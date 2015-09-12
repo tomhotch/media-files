@@ -20,4 +20,15 @@ A possible workflow
   - How can I tell?  Do the file sizes match?  How about the date taken?
 - Rename the files to avoid any duplicates in the library
 - Copy the new files to the libary
-- It's now OK to remove files from the staging directory and the camera 
+- It's now OK to remove files from the staging directory and the camera
+
+First Experiment
+- Read the file names and sizes from a source dir and destination dir
+- Report if:
+  1. Any files in src do not exist in dest
+  2. Any files in src match a file name in dest, but have different sizes
+
+Example Directory Paths
+- Filp Camera: F:\DCIM\100VIDEO
+- Staging Directory: T:\My_Videos\from-flip-camera
+- Library Directory: T:\My_Videos\FlipShare Data\Videos
