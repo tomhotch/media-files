@@ -15,7 +15,9 @@ use MediaFiles::Utils;
 
 # Test gather_file_info
 # Verify gather_file_info can read all files and sizes in a directory
-# TODO: Verify sub-directories with duplicate file names
+# TODO: What about a directory with no files?
+# TODO: What about a directory that doesn't exist?  Require the check
+#       to be done by the calling routine?
 
 my $test_dir = 't\test_dir';
 my $file_info_ref;
@@ -29,8 +31,11 @@ my $expected_results = YAML::LoadFile($expected_results_fh);
 close $expected_results_fh;
 is_deeply( $expected_results, $file_info_ref, 'Got correct file info for t\test_dir');
 
-# NEXT: Add other test cases for gather file info?  Any more needed?
-# NEXT: Add compare routine to make sure two directories have the same files and sizes
+# Test find_differences - matching case
+# Verify no differences are found when directories match
+can_ok('Utils', qw(find_differences));
+my @differences = Utils->find_differences($test_dir, $test_dir);
+is (@differences, 0, 'There should be no differences comparing a directory to itself');
 
 # Used one time to create an initial YAML file with expected results
 # print Dump( $file_info_ref ), "\n";
