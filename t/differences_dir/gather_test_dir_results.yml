@@ -1,0 +1,6 @@
+---
+t\test_dir\empty_file.txt: 0
+t\test_dir\hello_world.txt: 12
+t\test_dir\sub_dir\empty_file.txt: 0
+t\test_dir\gather_test_dir_results.yml: 187
+t\test_dir\empty_dir_results.yml: 389
