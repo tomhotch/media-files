@@ -79,4 +79,9 @@ sub num_dest_files_not_in_src {
     return scalar (@{$self->dest_files_not_in_src});
 }
 
+sub num_file_sizes_dont_match {
+    my ( $self ) = @_;
+    return scalar (@{$self->file_sizes_dont_match});
+}
+
 1;

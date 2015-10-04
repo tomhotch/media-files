@@ -27,18 +27,19 @@ has root_dir => ( is => 'rw' );
 sub gather_tree_info {
     my ( $self, $tree_info_ref ) = @_;
     my $dir = dir( $self->root_dir );
-	%$tree_info_ref = ();
+    %$tree_info_ref = ();
     $dir->recurse(
         callback => sub {
             my ($path) = @_;
             if ( not $path->is_dir ) {
-			    # Strip off the root directory from the file path - this allows
-                # files with the same name and sub-dir path from two different
-                # root directories to match.  Retain any child directories to
-                # disambiguate two files with same basename in different sub-dirs.
-				my $size = $path->stat->size;
-				my $index = (index $path, $dir) + length($dir) +1;
-				$path = substr $path, $index;
+
+              # Strip off the root directory from the file path - this allows
+              # files with the same name and sub-dir path from two different
+              # root directories to match.  Retain any child directories to
+              # disambiguate two files with same basename in different sub-dirs.
+                my $size = $path->stat->size;
+                my $index = ( index $path, $dir ) + length($dir) + 1;
+                $path = substr $path, $index;
                 $tree_info_ref->{$path} = $size;
             }
         }
