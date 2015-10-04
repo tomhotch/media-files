@@ -78,14 +78,15 @@ $differences = create_and_check_differences_object( $src_dir, $dest_dir);
 ok( $differences->find_differences(),
     'Can call find_differences for matching directories' );
 
-# NEXT Create and test for differences in differences_dir.
-# The number of differences below will not be zero.
-# Add num_file_size_mismatch check
-
 is( $differences->num_src_files_not_in_dest,
-    0, 'All src tree files should be in dest tree' );
+    1, 'One source file should be missing in dest tree' );
 is( $differences->num_dest_files_not_in_src,
-    0, 'All dest tree files are not in src tree' );
+    1, 'One dest file should be missing from source tree' );
+	
+# NEXT: Add a mismatch file size check.
+# Add missing files from sub-dirs?
+	
+done_testing();
 
 sub create_and_check_differences_object {
     my ($src_dir, $dest_dir) = @_;
@@ -101,12 +102,3 @@ sub create_and_check_differences_object {
         $dest_dir, 'Can set MediaFiles src_dir attribute' );
 	return $differences;
 }
-
-# my %src_tree_info = ();
-# ok( $src_dir_tree->gather_tree_info(\%src_tree_info), 'Can gather dir tree info for src_dir' );
-# open my $expected_results_fh, '<', "$SRC_DIR/gather_test_dir_results.yml";
-# my $expected_results_ref = YAML::LoadFile($expected_results_fh);
-# close $expected_results_fh;
-# is_deeply( \%src_tree_info, $expected_results_ref, 'Got correct file info for t\test_dir');
-
-done_testing();
