@@ -1,3 +1,5 @@
+#!/drives/c/Strawberry/perl/bin/perl
+
 ###
 # check_files.pl
 # Purpose:
@@ -31,16 +33,17 @@ GetOptions ("help|?" => \$help,
 pod2usage( -exitval => 1, -verbose => 1) if $help;
 # NEXT: Finish adding help/usage
 
+my $differences =
+              MediaFiles->new( src_dir => $src_dir, dest_dir => $dest_dir );
+$differences->find_differences();
+
 my $time = localtime;
 print "Checking files: $time\n";
 print "Source Dir: $src_dir\n";
 print "Dest Dir: $dest_dir\n\n";
 
-my $differences =
-              MediaFiles->new( src_dir => $src_dir, dest_dir => $dest_dir );
-$differences->find_differences();
-
 # NEXT STEPS
+# Print number of files in src and dest directories
 # - Should I have sub-hashes in the files hash to capture multiple properties?
 #   e.g. Mod time, created time, date taken?
 # - Create a CLI with options - what differences to print
