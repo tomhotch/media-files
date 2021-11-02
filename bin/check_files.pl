@@ -76,15 +76,15 @@ else {
 }
 
 # Are all the dest dir files in the src dir?
-# if ( $differences->num_dest_files_not_in_src == 0 ) {
-	# print "OK: All dest dir files are in src dir\n";
-# }
-# else {
-	# print "MISMATCH: " . $differences->num_dest_files_not_in_src . " files in dest dir not found in src dir:\n";
-	# foreach my $file ( @{$differences->dest_files_not_in_src} ) {
-		# print "$file\n";
-	# }
-# }
+if ( $differences->num_dest_files_not_in_src == 0 ) {
+	print "OK: All dest dir files are in src dir\n";
+}
+else {
+	print "MISMATCH: " . $differences->num_dest_files_not_in_src . " files in dest dir not found in src dir:\n";
+	foreach my $file ( @{$differences->dest_files_not_in_src} ) {
+		print "$file\n";
+	}
+}
 
 __END__
 

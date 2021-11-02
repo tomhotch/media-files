@@ -32,3 +32,26 @@ Example Directory Paths
 - Filp Camera: F:\DCIM\100VIDEO
 - Staging Directory: T:\My_Videos\from-flip-camera
 - Library Directory: T:\My_Videos\FlipShare Data\Videos
+
+## System and Perl Requirements
+
+I tested `check_files.pl on WSL` for Windows with the standard perl installed
+in `/usr/bin/perl` - version 5.18.2
+
+First, install `cpanm` to install required CPAN libraries.
+```
+$ sudo apt install cpanminus
+```
+
+Then, install the requied Perl libraries.
+```
+$ sudo cpanm Path::Class
+$ sudo cpanm Const::Fast
+$ sudo cpanm Moo
+```
+
+Verify you have all the required Perl libraries.  This should run with no
+errors.
+```
+$ perl bin/check_files.pl --help
+```
